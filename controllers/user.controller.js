@@ -64,7 +64,7 @@ function login(req, resp){
                     const token = jwt.sign({
                         email : user.email,
                         userId: user.id
-                    }, 'secret', function(err, token){
+                    }, process.env.JWT_KEY , function(err, token){
                         resp.status(200).json({
                             message: "Authenticated successfully!",
                             token: token
@@ -73,7 +73,7 @@ function login(req, resp){
                 } else {
                     resp.status(401).json({
                         message:"Invalid Credentials! Please enter valid data."
-                    }) 
+                    })  
                 }
             })
         }
